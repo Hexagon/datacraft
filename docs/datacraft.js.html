@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Datacraft - Documentation
+  </title>
+
+  <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link id="google-font" href="https://fonts.googleapis.com/css?family=Roboto+Mono|Cutive+Mono|Roboto:300,400,700" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="styles/highlight-themes/current.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <link type="text/css" rel="stylesheet" href="styles/collapsible.css">
+  <link type="text/css" rel="stylesheet" href="styles/style-switcher.css">
+  <link type="text/css" rel="stylesheet" href="styles/selectric.css">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <script src="https://embed.runkit.com"></script>
+  <style id="style-switcher-styles">
+    nav {
+        background: #282c34;
+    }
+    .hljs {
+        background: #1d2027;
+    }
+    .nav-container > ul > li.active a {
+        color: #dcdcdc;
+    }
+    .nav-container > ul > li.active a:hover {
+        color: #f78200;
+    }
+    .nav-container > ul > li.active ul {
+        border-color: #f78200;
+    }
+    h4.name {
+        color: #f78200;
+    }
+    .params > div > code, .params > div > em {
+        color: #f78200;
+    }
+    a, a:active {
+        color: #f78200;
+    }
+    .hljs-doctag, .hljs-keyword, .hljs-formula {
+        color: #f78200;
+    }
+    nav ul a:hover, nav ul a:active {
+        color: #f78200;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header-fixed">
+      <h1>
+        <a href="index.html" title="modernTemplate.title">
+            
+                <img alt="Datacraft" src="https://cdn.jsdelivr.net/gh/hexagon/datacraft@master/datacraft.png" />
+            
+            Datacraft
+        </a>
+      </h1>
+      <div class="center-header">
+          <ul>
+            
+          </ul>
+      </div>
+      <div class="right-header">
+           
+                <a href="https://github.com/hexagon/datacraft" title="View it on Github" style="">
+                    <i class="fab fa-github-alt"></i>
+                </a>
+           
+                <a href="https://www.npmjs.com/package/datacraft" title="View it on NPM" style="font-size: 19px">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </a>
+           
+      </div>
+  </header>
+
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <nav>
+    <div id="menu-container" class="scrollbar-inner">
+        <div class="nav-container">
+            <h3>Classes</h3><ul><li id="DataSet-nav"><a href="DataSet.html">DataSet</a></li></ul>
+        </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        datacraft.js
+      </h1>
+    
+
+    
+      
+
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>/* ------------------------------------------------------------------------------------
+
+  DataCraft - MIT License - Hexagon &lt;hexagon@56k.guru>
+
+  LINQ-like JavaScript object query library. No dependencies. Works in all environments.
+
+  ------------------------------------------------------------------------------------
+
+  License:
+
+	Copyright (c) 2022 Hexagon &lt;hexagon@56k.guru>
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	THE SOFTWARE.
+
+  ------------------------------------------------------------------------------------  */
+
+/**
+ * Creates a new DataSet.
+ * @class
+ */
+class DataSet {
+
+	/**
+     * DataSet entrypoint
+     * 
+     * @constructor
+     * @param {Array} [entries] - Optional array of objects, shortcut to `.insert()`
+     * @returns {DataSet}
+     */
+	constructor(entries) {
+
+		this.entries = [];
+
+		if (entries) this.insert(entries);
+
+	}
+
+	/* DataSet operations */
+	insert(inData) {
+		if ( Array.isArray(inData) ) {
+			inData.forEach((v) => {
+				this.entries.push(v);
+			});
+		} else {
+			throw new TypeError("DataSet: Parameter to insert must be an array.");
+		}
+	}
+
+	/*update() {
+        ToDo
+    }
+    delete() {
+        ToDo
+    }*/
+
+	drop(fieldName) {
+		this.entries.forEach(e => delete e[fieldName]);
+		return this;
+	}
+
+	/* Relation operations */
+	join(oDs, target, conditionCb) {
+		// Matches
+		this.entries.forEach((localObj) => {
+			const matches = [];
+			oDs.entries.forEach((remoteObj) => {
+				if (conditionCb(localObj, remoteObj)) {
+					matches.push(remoteObj);
+				}
+			});
+			localObj[target] = matches;
+		});
+
+		return this;
+	}
+	joinFirst(oDs, target, conditionCb) {
+		// Matches
+		this.entries.forEach((localObj) => {
+			oDs.entries.forEach((remoteObj) => {
+				if (conditionCb(localObj, remoteObj)) {
+					localObj[target] = remoteObj;
+				}
+			});
+		});
+
+		return this;
+	}
+	copy() {
+		return new DataSet(this.entries);
+	}
+
+	/* Filter operations */
+	reduce(conditionCb) {
+		this.entries = this.filter(conditionCb);
+		return this;
+	}
+	filter(conditionCb) {
+		return conditionCb ? this.entries.filter(conditionCb) : this.entries;
+	}
+	first(conditionCb) {
+		const result = this.filter(conditionCb);
+		return ( result.length >= 1 ) ? result[0] : undefined;
+	}
+
+	/* Aggregation operations */
+	groupBy(groupByFieldsInput, outputFieldName) {
+       
+		// Ensure that group groupByFieldsInput is an array
+		let groupByFields = Array.isArray(groupByFieldsInput) ? groupByFieldsInput : [groupByFieldsInput],
+			outputMap = {},
+			output = [];
+
+		this.entries.forEach((localObj) => {
+			let currentOutputObj = outputMap;
+
+			groupByFields.forEach(f => {
+				let fieldValue = localObj[f] !== undefined ? localObj[f] : "undefined";
+				if (currentOutputObj[fieldValue] === undefined) {
+					currentOutputObj[fieldValue] = { field: f, value: fieldValue, children: {} };
+				}
+				currentOutputObj = currentOutputObj[fieldValue].children;
+			});
+           
+			if (Array.isArray(currentOutputObj[outputFieldName])) {
+				currentOutputObj[outputFieldName].push(localObj);
+			} else {
+				currentOutputObj[outputFieldName] = [localObj];
+			}
+
+		});
+
+		const rebuildResults = (currentLevel, trail) => {
+			trail = Object.assign({}, trail) || {};
+			Object.values(currentLevel).forEach((currentItem) => {
+				if (Array.isArray(currentItem)) {
+					trail[outputFieldName] = currentItem;
+					output.push(trail);
+				} else {
+					trail[currentItem.field] = currentItem.value;
+					rebuildResults(currentItem.children, trail);
+				}
+			});
+		};
+
+		rebuildResults(outputMap);
+
+		return new DataSet(output);
+
+	}    
+   
+	/* Aggregation operations */
+	total(outputFieldName) {
+       
+		let newEntry = {};
+		newEntry[outputFieldName] = this.entries;
+
+		return new DataSet([newEntry]);
+
+	}
+
+	avg(field, outputFieldName, mapCb) {
+		this.entries.forEach(e => {
+			const data = e[field].map(mapCb);
+			e[outputFieldName] = data.reduce((a,b) => a + b, 0) / data.length;
+		});
+		return this;
+	}
+
+	sum(field, outputFieldName, mapCb) {
+		this.entries.forEach(e => {
+			e[outputFieldName] = e[field].map(mapCb).reduce((a,b) => a + b, 0);
+		});
+		return this;
+	}
+
+	min(field, outputFieldName, mapCb) {
+		this.entries.forEach(e => {
+			e[outputFieldName] = Math.min(...e[field].map(mapCb));
+		});
+		return this;
+	}
+
+	max(field, outputFieldName, mapCb) {
+		this.entries.forEach(e => {
+			e[outputFieldName] = Math.max(...e[field].map(mapCb));
+		});
+		return this;
+	}
+
+
+	countd(field, outputFieldName, mapCb) {
+		this.entries.forEach(e => {
+			const data = e[field].map(mapCb);
+			e[outputFieldName] = new Set(data).size;
+		});
+		return this;
+	}
+
+	count(field, outputFieldName, mapCb) {
+		this.entries.forEach(e => {
+			e[outputFieldName] = e[field].map(mapCb).length;
+		});
+		return this;
+	}
+
+	calc(outputFieldName, calcCb) {
+		this.entries.forEach(e => {
+			e[outputFieldName] = calcCb(e);
+		});
+		return this;
+	}
+
+	autonumber(outputFieldName) {
+		let current = 0;
+		this.entries.forEach(e => {
+			e[outputFieldName] = current++;
+		});
+		return this;
+	}
+
+}
+
+export default DataSet;
+export { DataSet };</code></pre>
+  </article>
+</section>
+
+    
+
+
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a>
+  </footer>
+
+    
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+  <script src="scripts/scrollbar.js"></script>
+  <script src="scripts/collapsible.js"></script>
+  <script src="scripts/jquery.selectric.min.js"></script>
+  <script src="scripts/clipboard.min.js"></script>
+
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  
+  <script>
+      $(function () {
+          $('#menu-container').scrollbar();
+
+          
+      });
+    </script>
+</body>
+</html>
