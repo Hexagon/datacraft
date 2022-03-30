@@ -52,7 +52,7 @@ const data : DataSet = new DataSet();
 JavaScript
 
 ```javascript
-import DataSet from "https://cdn.jsdelivr.net/gh/hexagon/datacraft@0/src/datacraft.js";
+import DataSet from "https://deno.land/x/datacraft/src/datacraft.js";
 
 const data = new DataSet();
 ```
@@ -60,7 +60,7 @@ const data = new DataSet();
 TypeScript
 
 ```typescript
-import { DataSet } from "https://cdn.jsdelivr.net/gh/hexagon/datacraft@0/src/datacraft.js";
+import { DataSet } from "https://deno.land/x/datacraft/src/datacraft.js";
 
 const _data : DataSet = new DataSet();
 ```
@@ -99,19 +99,22 @@ The short version:
 ### Examples
 
 ```javascript
+// Node 
+// import { DataSet } from "datacraft";
 
-import { DataSet } from "datacraft";
+// Deno
+import DataSet from "https://deno.land/x/datacraft/src/datacraft.js";
 
 // Set up data
 let persons = new DataSet([
-    {name: "Curt", group: 14, age: 34},
-    {name: "Lewis", group: 14, age: 38},
-    {name: "Stewie", group: 15, age: 31}
+	{name: "Curt", group: 14, age: 34},
+	{name: "Lewis", group: 14, age: 38},
+	{name: "Stewie", group: 15, age: 31}
 ]);
 
 let groups = new DataSet([
-    {group: 14, name: "Western"},
-    {group: 15, name: "North"}
+	{group: 14, name: "Western"},
+	{group: 15, name: "North"}
 ]);
 
 // Set up relations
@@ -120,10 +123,10 @@ groups.join(persons, "persons", (g, p) => g.group == p.group);
 
 // Aggregate data
 groups
-    .avg("persons", "averageAge", p => p.age)
-    .min("persons", "maxAge", p => p.age)
-    .max("persons", "minAge", p => p.age)
-    .count("persons", "personCount", p => p.name);
+	.avg("persons", "averageAge", p => p.age)
+	.min("persons", "maxAge", p => p.age)
+	.max("persons", "minAge", p => p.age)
+	.count("persons", "personCount", p => p.name);
 
 // Print data
 console.log(persons.toArray());

@@ -157,12 +157,12 @@ const data : DataSet = new DataSet();
 </code></pre>
 <h3>Deno</h3>
 <p>JavaScript</p>
-<pre class="prettyprint source lang-javascript"><code>import DataSet from &quot;https://cdn.jsdelivr.net/gh/hexagon/datacraft@0/src/datacraft.js&quot;;
+<pre class="prettyprint source lang-javascript"><code>import DataSet from &quot;https://deno.land/x/datacraft/src/datacraft.js&quot;;
 
 const data = new DataSet();
 </code></pre>
 <p>TypeScript</p>
-<pre class="prettyprint source lang-typescript"><code>import { DataSet } from &quot;https://cdn.jsdelivr.net/gh/hexagon/datacraft@0/src/datacraft.js&quot;;
+<pre class="prettyprint source lang-typescript"><code>import { DataSet } from &quot;https://deno.land/x/datacraft/src/datacraft.js&quot;;
 
 const _data : DataSet = new DataSet();
 </code></pre>
@@ -188,19 +188,22 @@ const _data : DataSet = new DataSet();
 <p>Full documentation available at <a href="https://hexagon.github.io/datacraft/DataSet.html">hexagon.github.io/datacraft</a>.</p>
 <p>The short version:</p>
 <h3>Examples</h3>
-<pre class="prettyprint source lang-javascript"><code>
-import { DataSet } from &quot;datacraft&quot;;
+<pre class="prettyprint source lang-javascript"><code>// Node 
+// import { DataSet } from &quot;datacraft&quot;;
+
+// Deno
+import DataSet from &quot;https://deno.land/x/datacraft/src/datacraft.js&quot;;
 
 // Set up data
 let persons = new DataSet([
-    {name: &quot;Curt&quot;, group: 14, age: 34},
-    {name: &quot;Lewis&quot;, group: 14, age: 38},
-    {name: &quot;Stewie&quot;, group: 15, age: 31}
+	{name: &quot;Curt&quot;, group: 14, age: 34},
+	{name: &quot;Lewis&quot;, group: 14, age: 38},
+	{name: &quot;Stewie&quot;, group: 15, age: 31}
 ]);
 
 let groups = new DataSet([
-    {group: 14, name: &quot;Western&quot;},
-    {group: 15, name: &quot;North&quot;}
+	{group: 14, name: &quot;Western&quot;},
+	{group: 15, name: &quot;North&quot;}
 ]);
 
 // Set up relations
@@ -209,10 +212,10 @@ groups.join(persons, &quot;persons&quot;, (g, p) => g.group == p.group);
 
 // Aggregate data
 groups
-    .avg(&quot;persons&quot;, &quot;averageAge&quot;, p => p.age)
-    .min(&quot;persons&quot;, &quot;maxAge&quot;, p => p.age)
-    .max(&quot;persons&quot;, &quot;minAge&quot;, p => p.age)
-    .count(&quot;persons&quot;, &quot;personCount&quot;, p => p.name);
+	.avg(&quot;persons&quot;, &quot;averageAge&quot;, p => p.age)
+	.min(&quot;persons&quot;, &quot;maxAge&quot;, p => p.age)
+	.max(&quot;persons&quot;, &quot;minAge&quot;, p => p.age)
+	.count(&quot;persons&quot;, &quot;personCount&quot;, p => p.name);
 
 // Print data
 console.log(persons.toArray());
