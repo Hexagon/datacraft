@@ -125,7 +125,8 @@
     <article>
       <h1>Datacraft</h1>
 <p>LINQ-like JavaScript object query library. No dependencies. Works in all environments.</p>
-<p><img src="https://github.com/Hexagon/datacraft/workflows/Node.js%20CI/badge.svg?branch=master" alt="Node.js CI"> <a href="https://badge.fury.io/js/datacraft"><img src="https://badge.fury.io/js/datacraft.svg" alt="npm version"></a>
+<p><em>Work in progress</em>, stay tuned for the upcoming <code>1.0</code>.</p>
+<p><img src="https://github.com/Hexagon/datacraft/workflows/Node.js%20CI/badge.svg?branch=main" alt="Node.js CI"> <a href="https://badge.fury.io/js/datacraft"><img src="https://badge.fury.io/js/datacraft.svg" alt="npm version"></a>
 <a href="https://github.com/Hexagon/datacraft/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a> <a href="https://www.npmjs.org/package/datacraft"><img src="https://img.shields.io/npm/dw/datacraft.svg" alt="NPM Downloads"></a>
 <img src="https://img.shields.io/badge/dependencies-none-brightgreen" alt="No dependencies"></p>
 <ul>
@@ -156,29 +157,29 @@ const data : DataSet = new DataSet();
 </code></pre>
 <h3>Deno</h3>
 <p>JavaScript</p>
-<pre class="prettyprint source lang-javascript"><code>import DataSet from &quot;https://cdn.jsdelivr.net/gh/hexagon/datacraft@4/src/datacraft.js&quot;;
+<pre class="prettyprint source lang-javascript"><code>import DataSet from &quot;https://cdn.jsdelivr.net/gh/hexagon/datacraft@0/src/datacraft.js&quot;;
 
 const data = new DataSet();
 </code></pre>
 <p>TypeScript</p>
-<pre class="prettyprint source lang-typescript"><code>import { DataSet } from &quot;https://cdn.jsdelivr.net/gh/hexagon/datacraft@1/src/datacraft.js&quot;;
+<pre class="prettyprint source lang-typescript"><code>import { DataSet } from &quot;https://cdn.jsdelivr.net/gh/hexagon/datacraft@0/src/datacraft.js&quot;;
 
 const _data : DataSet = new DataSet();
 </code></pre>
 <h3>Browser</h3>
 <h4>Manual</h4>
 <ul>
-<li>Download latest <a href="https://github.com/Hexagon/datacraft/archive/refs/heads/master.zip">zipball</a></li>
+<li>Download latest <a href="https://github.com/Hexagon/datacraft/archive/refs/heads/main.zip">zipball</a></li>
 <li>Unpack</li>
 <li>Grab <code>datacraft.min.js</code> (UMD and standalone) or <code>datacraft.min.mjs</code> (ES-module) from the <a href="/dist">dist/</a> folder</li>
 </ul>
 <h4>CDN</h4>
 <p>To use as a <a href="https://github.com/umdjs/umd">UMD</a>-module (stand alone, <a href="https://requirejs.org/">RequireJS</a> etc.)</p>
-<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/datacraft@1/dist/datacraft.min.js&quot;>&lt;/script>
+<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/datacraft@0/dist/datacraft.min.js&quot;>&lt;/script>
 </code></pre>
 <p>To use as a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ES-module</a></p>
 <pre class="prettyprint source lang-html"><code>&lt;script type=&quot;module&quot;>
-	import DataSet from &quot;https://cdn.jsdelivr.net/npm/datacraft@1/dist/datacraft.min.mjs&quot;;
+	import DataSet from &quot;https://cdn.jsdelivr.net/npm/datacraft@0/dist/datacraft.min.mjs&quot;;
 
 	// ... see usage section ...
 &lt;/script>
@@ -186,8 +187,155 @@ const _data : DataSet = new DataSet();
 <h2>Documentation</h2>
 <p>Full documentation available at <a href="https://hexagon.github.io/datacraft/DataSet.html">hexagon.github.io/datacraft</a>.</p>
 <p>The short version:</p>
-<h3>Signature</h3>
-<h2>Examples</h2>
+<h3>Examples</h3>
+<pre class="prettyprint source lang-javascript"><code>
+import { DataSet } from &quot;datacraft&quot;;
+
+// Set up data
+let persons = new DataSet([
+    {name: &quot;Curt&quot;, group: 14, age: 34},
+    {name: &quot;Lewis&quot;, group: 14, age: 38},
+    {name: &quot;Stewie&quot;, group: 15, age: 31}
+]);
+
+let groups = new DataSet([
+    {group: 14, name: &quot;Western&quot;},
+    {group: 15, name: &quot;North&quot;}
+]);
+
+// Set up relations
+persons.joinFirst(groups, &quot;groups&quot;, (p, g) => p.group == g.group);
+groups.join(persons, &quot;persons&quot;, (g, p) => g.group == p.group);
+
+// Aggregate data
+groups
+    .avg(&quot;persons&quot;, &quot;averageAge&quot;, p => p.age)
+    .min(&quot;persons&quot;, &quot;maxAge&quot;, p => p.age)
+    .max(&quot;persons&quot;, &quot;minAge&quot;, p => p.age)
+    .count(&quot;persons&quot;, &quot;personCount&quot;, p => p.name);
+
+// Print data
+console.log(persons.toArray());
+console.log(groups.toArray());
+</code></pre>
+<h3>All methods</h3>
+<p>All methods of <code>DataSet</code>.</p>
+<h4>Dataset operations</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>insert([obj1, obj2])</td>
+<td>Insert new objects into data set</td>
+</tr>
+<tr>
+<td>drop(fieldName)</td>
+<td>Remove a field from all objects in data set</td>
+</tr>
+<tr>
+<td>copy()</td>
+<td>Make a shallow copy of current data set</td>
+</tr>
+<tr>
+<td>calc(outputFieldName, calcCb)</td>
+<td>Creates a new field, containing the return value of calcCb</td>
+</tr>
+<tr>
+<td>autonumber(outputFieldName)</td>
+<td>Creates a new field, contaning a number that increment for each entry</td>
+</tr>
+</tbody>
+</table>
+<h4>Relations</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>join(otherDataSet, newFieldName, conditionCb)</td>
+<td>Join all objects in data set with objects of another data set where conditionsCb return true</td>
+</tr>
+<tr>
+<td>joinFirst(otherDataSet, newFieldName, conditionCb)</td>
+<td>Join first object from otherDataSet with objects in current data set</td>
+</tr>
+</tbody>
+</table>
+<h4>Filtering</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filter(conditionCb)</td>
+<td>Keep only objects matching conditionCb</td>
+</tr>
+<tr>
+<td>toArray(conditionCb)</td>
+<td>Returns an array of all entries in current data set, optionally filtered by conditionCb</td>
+</tr>
+<tr>
+<td>first(conditionCb)</td>
+<td>Returns the first entry if current data set, optionally filtered by conditionCb</td>
+</tr>
+</tbody>
+</table>
+<h4>Aggregation</h4>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>groupBy(groupByFieldsInput, outputFieldName)</td>
+<td>Group current dataset by field(s) specified by <code>groupByFieldsInput</code></td>
+</tr>
+<tr>
+<td>total(outputFieldName)</td>
+<td>Group current dataset, placing all entries in a new field named by parameter <code>outputFieldName</code></td>
+</tr>
+<tr>
+<td>avg(field, outputFieldName, mapCb)</td>
+<td>Average a value from entries in field specified by <code>field</code>, in a new field named by <code>outputFieldName</code>. mapCb points out which subfield should be averaged</td>
+</tr>
+<tr>
+<td>sum(field, outputFieldName, mapCb)</td>
+<td>Like above</td>
+</tr>
+<tr>
+<td>min(field, outputFieldName, mapCb)</td>
+<td>Like above</td>
+</tr>
+<tr>
+<td>max(field, outputFieldName, mapCb)</td>
+<td>Like above</td>
+</tr>
+<tr>
+<td>countd(field, outputFieldName, mapCb)</td>
+<td>Like above</td>
+</tr>
+<tr>
+<td>count(field, outputFieldName, mapCb)</td>
+<td>Like above</td>
+</tr>
+</tbody>
+</table>
 <h2>Contributing</h2>
 <p>See <a href="/CONTRIBUTING.md">Contribution Guide</a></p>
 <h2>License</h2>

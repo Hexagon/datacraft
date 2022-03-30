@@ -114,7 +114,7 @@
 			this.entries = this.filter(conditionCb);
 			return this;
 		}
-		filter(conditionCb) {
+		toArray(conditionCb) {
 			return conditionCb ? this.entries.filter(conditionCb) : this.entries;
 		}
 		first(conditionCb) {

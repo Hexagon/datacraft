@@ -19,7 +19,7 @@ export class DataSet {
     joinFirst(oDs: any, target: any, conditionCb: any): DataSet;
     copy(): DataSet;
     reduce(conditionCb: any): DataSet;
-    filter(conditionCb: any): any[];
+    toArray(conditionCb: any): any[];
     first(conditionCb: any): any;
     groupBy(groupByFieldsInput: any, outputFieldName: any): DataSet;
     total(outputFieldName: any): DataSet;
