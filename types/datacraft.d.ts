@@ -32,3 +32,5 @@ export class DataSet {
     calc(outputFieldName: any, calcCb: any): DataSet;
     autonumber(outputFieldName: any): DataSet;
 }
+import { clone } from "./clone.js";
+export { clone };

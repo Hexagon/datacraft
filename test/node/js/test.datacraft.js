@@ -23,8 +23,8 @@ THE SOFTWARE.
 */
 
 import DataSet from "../../../src/datacraft.js";
-import { DataSet as DataSet2 } from "../../../src/datacraft.js";
+import { DataSet as DataSet2, clone } from "../../../src/datacraft.js";
 import test from "./src/suite.cjs";
 test(DataSet);
-test(DataSet2);
+test(DataSet2, clone);
 

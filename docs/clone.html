@@ -111,7 +111,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        DataSet
+        clone
       </h1>
     
 
@@ -122,26 +122,20 @@
     <div class="container-overview">
       
         
-           <div class="class-description description">
-             <p>Creates a new DataSet.</p>
-           </div>
-        
 
         
 
 
-  
-    <h2>Constructor</h2>
   
 
   <span class='name-container'>
-    <a class="link-icon" href="#DataSet">
+    <a class="link-icon" href="#clone">
       <svg height="20" width="20" style="fill: black;">
         <use xlink:href="#linkIcon"></use>
       </svg>
     </a>
-    <h4 class="name" id="DataSet">
-      <span class="type-signature"></span>new DataSet<span class="signature">(entries<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="DataSet.html">DataSet</a>}</span>
+    <h4 class="name" id="clone">
+      <span class="type-signature"></span>new clone<span class="signature">(source, target<span class="signature-attributes">opt</span>, breakCircular<span class="signature-attributes">opt</span>, trace<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {any}</span>
     </h4>
   </span>
 
@@ -150,7 +144,8 @@
 
 
   <div class="description">
-    <p>DataSet entrypoint</p>
+    <p>Clone</p>
+<p>Recursive function that creates a deep copy of any object</p>
   </div>
 
 
@@ -166,10 +161,38 @@
      
       <div>
           
-               <code>entries</code>
+               <code>source</code>
                <em>(
     <span class="param-type">
-      Array
+      any
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>Source object</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>target</code>
+               <em>(
+    <span class="param-type">
+      any
     </span>
 
     
@@ -188,7 +211,67 @@
             </span>
           
 
-          <p>Optional array of objects, shortcut to <code>.insert()</code></p>
+          <p>Target object</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>breakCircular</code>
+               <em>(
+    <span class="param-type">
+      boolean
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+                &lt;optional><br>
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>Replace circular references with string '[Circular]'</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>trace</code>
+               <em>(
+    <span class="param-type">
+      trace
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+                &lt;optional><br>
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>Used internally for tracing circular references</p>
 
           
 
@@ -231,7 +314,7 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="datacraft.js.html">datacraft.js</a>, <a href="datacraft.js.html#line37">line 37</a>
+          <a href="clone.js.html">clone.js</a>, <a href="clone.js.html#line38">line 38</a>
         </li>
       </ul>
     </dd>

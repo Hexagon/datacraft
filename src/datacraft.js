@@ -28,6 +28,8 @@
 
   ------------------------------------------------------------------------------------  */
 
+import { clone } from "./clone.js";
+
 /**
  * Creates a new DataSet.
  * @class
@@ -100,7 +102,7 @@ class DataSet {
 		return this;
 	}
 	copy() {
-		return new DataSet(this.entries);
+		return new DataSet(clone(this.entries));
 	}
 
 	/* Filter operations */
@@ -235,4 +237,4 @@ class DataSet {
 }
 
 export default DataSet;
-export { DataSet };
+export { DataSet, clone };
