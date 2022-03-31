@@ -105,6 +105,7 @@ The short version:
 // Deno
 import DataSet from "https://deno.land/x/datacraft/src/datacraft.js";
 
+
 // Set up data
 let persons = new DataSet([
 	{name: "Curt", group: 14, age: 34},
@@ -118,19 +119,19 @@ let groups = new DataSet([
 ]);
 
 // Set up relations
-persons.joinFirst(groups, "groups", (p, g) => p.group == g.group);
-groups.join(persons, "persons", (g, p) => g.group == p.group);
+let personsWithFirstGroup = persons.copy().joinFirst(groups, "groups", (p, g) => p.group == g.group);
+let groupsWithAllPersons = groups.copy().join(persons, "persons", (g, p) => g.group == p.group);
 
 // Aggregate data
-groups
+groupsWithAllPersons
 	.avg("persons", "averageAge", p => p.age)
 	.min("persons", "maxAge", p => p.age)
 	.max("persons", "minAge", p => p.age)
 	.count("persons", "personCount", p => p.name);
 
 // Print data
-console.log(persons.toArray());
-console.log(groups.toArray());
+console.log(personsWithFirstGroup.toArray());
+console.log(groupsWithAllPersons.toArray());
 ```
 
 ### All methods
