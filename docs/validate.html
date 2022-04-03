@@ -111,7 +111,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        DataSet
+        validate
       </h1>
     
 
@@ -122,26 +122,20 @@
     <div class="container-overview">
       
         
-           <div class="class-description description">
-             <p>Creates a new DataSet.</p>
-           </div>
-        
 
         
 
 
-  
-    <h2>Constructor</h2>
   
 
   <span class='name-container'>
-    <a class="link-icon" href="#DataSet">
+    <a class="link-icon" href="#validate">
       <svg height="20" width="20" style="fill: black;">
         <use xlink:href="#linkIcon"></use>
       </svg>
     </a>
-    <h4 class="name" id="DataSet">
-      <span class="type-signature"></span>new DataSet<span class="signature">(options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="DataSet.html">DataSet</a>}</span>
+    <h4 class="name" id="validate">
+      <span class="type-signature"></span>new validate<span class="signature">(obj, allowedFields, requiredFields<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {boolean}</span>
     </h4>
   </span>
 
@@ -150,7 +144,8 @@
 
 
   <div class="description">
-    <p>DataSet entrypoint</p>
+    <p>Validate</p>
+<p>Validate an object agains allowed and optionally required fields</p>
   </div>
 
 
@@ -166,10 +161,72 @@
      
       <div>
           
-               <code>options</code>
+               <code>obj</code>
                <em>(
     <span class="param-type">
-      object
+      any
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>Object to check</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>allowedFields</code>
+               <em>(
+    <span class="param-type">
+      array
+    </span>
+
+    |
+
+    <span class="param-type">
+      Set
+    </span>
+
+    
+)</em>
+          
+
+          
+            <span class="attributes">
+              
+
+              
+
+              
+            </span>
+          
+
+          <p>Allowed fields</p>
+
+          
+
+      </div>
+      
+      <div>
+          
+               <code>requiredFields</code>
+               <em>(
+    <span class="param-type">
+      boolean
     </span>
 
     
@@ -188,7 +245,7 @@
             </span>
           
 
-          <p>Optional options</p>
+          <p>Required fields</p>
 
           
 
@@ -231,7 +288,7 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="datacraft.js.html">datacraft.js</a>, <a href="datacraft.js.html#line38">line 38</a>
+          <a href="validate.js.html">validate.js</a>, <a href="validate.js.html#line12">line 12</a>
         </li>
       </ul>
     </dd>

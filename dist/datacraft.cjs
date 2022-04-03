@@ -105,6 +105,45 @@
 
 	}
 
+	/**
+	 * Validate
+	 * 
+	 * Validate an object agains allowed and optionally required fields
+	 * 
+	 * @constructor
+	 * @param {any} obj - Object to check
+	 * @param {array|Set} allowedFields - Allowed fields
+	 * @param {boolean} [requiredFields] - Required fields
+	 * @returns {boolean}
+	 */
+	function validate(obj, allowedFields, requiredFields) {
+
+		const objectKeys = new Set(Object.keys(obj));
+	    
+		// Check allowed
+		if (allowedFields) {
+			const allowedSet = new Set(allowedFields);
+			objectKeys.forEach(k => {
+				if (!allowedSet.has(k)) {
+					throw new Error("Field '" + k + "' is not an allowed property of validated object.");
+				}
+			});
+		}
+
+		// Check required  
+		if (requiredFields) {  
+			const requiredSet = new Set(requiredFields);
+			requiredSet.forEach(r => {
+				if (!objectKeys.has(r)) {
+					throw new Error("Required field '" + r + "' is not present in validated object.");
+				}
+			});
+		}
+
+		return true;
+
+	}
+
 	/* ------------------------------------------------------------------------------------
 
 	  DataCraft - MIT License - Hexagon <hexagon@56k.guru>
@@ -145,14 +184,22 @@
 	     * DataSet entrypoint
 	     * 
 	     * @constructor
-	     * @param {Array} [entries] - Optional array of objects, shortcut to `.insert()`
+	     * @param {object} [options] - Optional options
 	     * @returns {DataSet}
 	     */
-		constructor(entries) {
+		constructor(options) {
 
 			this.entries = [];
 
-			if (entries) this.insert(entries);
+			// Handle options with defaults and ovverrides
+			this.options = {
+				allowedFields: null,
+				requiredFields: null 
+			};
+			if (options) {
+				validate(options, Object.keys(this.options));
+				this.options = clone(options, this.options);
+			}
 
 		}
 
@@ -160,19 +207,28 @@
 		insert(inData) {
 			if ( Array.isArray(inData) ) {
 				inData.forEach((v) => {
+					if (this.options.allowedFields || this.options.requiredFields) {
+						validate(v, this.options.allowedFields, this.options.requiredFields);
+					}
 					this.entries.push(v);
 				});
 			} else {
 				throw new TypeError("DataSet: Parameter to insert must be an array.");
 			}
+			return this;
 		}
 
-		/*update() {
-	        ToDo
-	    }
-	    delete() {
-	        ToDo
-	    }*/
+		update(o, whereFn) {
+			// Validate input
+			if (this.options.allowedFields || this.options.requiredFields) {
+				validate(o, this.options.allowedFields, this.options.requiredFields);
+			}
+			this.toArray(whereFn).forEach((e) => {
+				let oCopy = clone(o, e);
+				e = oCopy;
+			});
+			return this;
+		}
 
 		drop(fieldName) {
 			this.entries.forEach(e => delete e[fieldName]);

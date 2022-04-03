@@ -98,34 +98,34 @@ module.exports = function (clone, test) {
 
 	/*test("Circular reference", function () {
         
-        var simpleObject = {
-                a: 1,
-                b: {
-                    c: {
-                        d: {
-                            val: 2
-                        }
-                    }
-                },
-                d: 3
-            },
-            clonedObject;
+		let simpleObject = {
+				a: 1,
+				b: {
+					c: {
+						d: {
+							val: 2
+						}
+					}
+				},
+				d: 3
+			},
+			clonedObject;
 
-        // Create a circular reference
-        simpleObject.b.c.d.e = simpleObject.b;
+		// Create a circular reference
+		simpleObject.b.c.d.e = simpleObject.b;
 
-        clonedObject = clone(simpleObject);
+		clonedObject = clone(simpleObject);
 
-        // Test that the circular reference works
-        assert.equal(clonedObject.b.c.d.e,clonedObject.b);
+		// Test that the circular reference works
+		assert.equal(clonedObject.b.c.d.e,clonedObject.b);
 
-        // Test that the reference to simpleObject is removed
-        assert.not.equal(clonedObject.b.c.d.e,simpleObject.b);
+		// Test that the reference to simpleObject is removed
+		assert.not.equal(clonedObject.b.c.d.e,simpleObject.b);
 
-        // Test recursion into the circular reference
-        assert.equal(clonedObject.b.c.d.e.c.d.val,2);
+		// Test recursion into the circular reference
+		assert.equal(clonedObject.b.c.d.e.c.d.val,2);
         
-    });*/
+	});*/
 
 	test("Breaking circular reference", function () {
         

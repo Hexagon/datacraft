@@ -107,13 +107,13 @@ import DataSet from "https://deno.land/x/datacraft/src/datacraft.js";
 
 
 // Set up data
-let persons = new DataSet([
+let persons = new DataSet().insert([
 	{name: "Curt", group: 14, age: 34},
 	{name: "Lewis", group: 14, age: 38},
 	{name: "Stewie", group: 15, age: 31}
 ]);
 
-let groups = new DataSet([
+let groups = new DataSet().insert([
 	{group: 14, name: "Western"},
 	{group: 15, name: "North"}
 ]);
@@ -143,6 +143,7 @@ All methods of `DataSet`.
 | Method | Description |
 | ------ | ----------- |
 | insert([obj1, obj2]) | Insert new objects into data set |
+| update(obj, conditionCb) | Update all entries matching conditionCb with properties of `obj` |
 | drop(fieldName) | Remove a field from all objects in data set |
 | copy() | Make a shallow copy of current data set |
 | calc(outputFieldName, calcCb) | Creates a new field, containing the return value of calcCb |

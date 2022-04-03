@@ -29,6 +29,7 @@
   ------------------------------------------------------------------------------------  */
 
 import { clone } from "./clone.js";
+import { validate } from "./validate.js";
 
 /**
  * Creates a new DataSet.
@@ -40,14 +41,22 @@ class DataSet {
      * DataSet entrypoint
      * 
      * @constructor
-     * @param {Array} [entries] - Optional array of objects, shortcut to `.insert()`
+     * @param {object} [options] - Optional options
      * @returns {DataSet}
      */
-	constructor(entries) {
+	constructor(options) {
 
 		this.entries = [];
 
-		if (entries) this.insert(entries);
+		// Handle options with defaults and ovverrides
+		this.options = {
+			allowedFields: null,
+			requiredFields: null 
+		};
+		if (options) {
+			validate(options, Object.keys(this.options));
+			this.options = clone(options, this.options);
+		}
 
 	}
 
@@ -55,19 +64,28 @@ class DataSet {
 	insert(inData) {
 		if ( Array.isArray(inData) ) {
 			inData.forEach((v) => {
+				if (this.options.allowedFields || this.options.requiredFields) {
+					validate(v, this.options.allowedFields, this.options.requiredFields);
+				}
 				this.entries.push(v);
 			});
 		} else {
 			throw new TypeError("DataSet: Parameter to insert must be an array.");
 		}
+		return this;
 	}
 
-	/*update() {
-        ToDo
-    }
-    delete() {
-        ToDo
-    }*/
+	update(o, whereFn) {
+		// Validate input
+		if (this.options.allowedFields || this.options.requiredFields) {
+			validate(o, this.options.allowedFields, this.options.requiredFields);
+		}
+		this.toArray(whereFn).forEach((e) => {
+			let oCopy = clone(o, e);
+			e = oCopy;
+		});
+		return this;
+	}
 
 	drop(fieldName) {
 		this.entries.forEach(e => delete e[fieldName]);
@@ -237,4 +255,4 @@ class DataSet {
 }
 
 export default DataSet;
-export { DataSet, clone };
+export { DataSet, clone, validate };

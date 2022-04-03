@@ -103,7 +103,7 @@
   <nav>
     <div id="menu-container" class="scrollbar-inner">
         <div class="nav-container">
-            <h3>Classes</h3><ul><li id="clone-nav"><a href="clone.html">clone</a></li><li id="DataSet-nav"><a href="DataSet.html">DataSet</a></li></ul>
+            <h3>Classes</h3><ul><li id="clone-nav"><a href="clone.html">clone</a></li><li id="DataSet-nav"><a href="DataSet.html">DataSet</a></li><li id="validate-nav"><a href="validate.html">validate</a></li></ul>
         </div>
     </div>
   </nav>
@@ -196,13 +196,13 @@ import DataSet from &quot;https://deno.land/x/datacraft/src/datacraft.js&quot;;
 
 
 // Set up data
-let persons = new DataSet([
+let persons = new DataSet().insert([
 	{name: &quot;Curt&quot;, group: 14, age: 34},
 	{name: &quot;Lewis&quot;, group: 14, age: 38},
 	{name: &quot;Stewie&quot;, group: 15, age: 31}
 ]);
 
-let groups = new DataSet([
+let groups = new DataSet().insert([
 	{group: 14, name: &quot;Western&quot;},
 	{group: 15, name: &quot;North&quot;}
 ]);
@@ -236,6 +236,10 @@ console.log(groupsWithAllPersons.toArray());
 <tr>
 <td>insert([obj1, obj2])</td>
 <td>Insert new objects into data set</td>
+</tr>
+<tr>
+<td>update(obj, conditionCb)</td>
+<td>Update all entries matching conditionCb with properties of <code>obj</code></td>
 </tr>
 <tr>
 <td>drop(fieldName)</td>

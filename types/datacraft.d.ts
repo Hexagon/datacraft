@@ -8,12 +8,14 @@ export class DataSet {
      * DataSet entrypoint
      *
      * @constructor
-     * @param {Array} [entries] - Optional array of objects, shortcut to `.insert()`
+     * @param {object} [options] - Optional options
      * @returns {DataSet}
      */
-    constructor(entries?: any[]);
+    constructor(options?: object);
     entries: any[];
-    insert(inData: any): void;
+    options: any;
+    insert(inData: any): DataSet;
+    update(o: any, whereFn: any): DataSet;
     drop(fieldName: any): DataSet;
     join(oDs: any, target: any, conditionCb: any): DataSet;
     joinFirst(oDs: any, target: any, conditionCb: any): DataSet;
@@ -33,4 +35,5 @@ export class DataSet {
     autonumber(outputFieldName: any): DataSet;
 }
 import { clone } from "./clone.js";
-export { clone };
+import { validate } from "./validate.js";
+export { clone, validate };
