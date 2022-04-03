@@ -4,7 +4,7 @@ LINQ-like JavaScript object query library. No dependencies. Works in all environ
 
 *Work in progress*, stay tuned for the upcoming `1.0`.
 
-![Node.js CI](https://github.com/Hexagon/datacraft/workflows/Node.js%20CI/badge.svg?branch=main) [![npm version](https://badge.fury.io/js/datacraft.svg)](https://badge.fury.io/js/datacraft) 
+![Node.js CI](https://github.com/Hexagon/datacraft/workflows/Node.js%20CI/badge.svg?branch=main) ![Deno CI](https://github.com/Hexagon/datacraft/workflows/Deno%20CI/badge.svg?branch=main) [![npm version](https://badge.fury.io/js/datacraft.svg)](https://badge.fury.io/js/datacraft) 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Hexagon/datacraft/blob/main/LICENSE) [![NPM Downloads](https://img.shields.io/npm/dw/datacraft.svg)](https://www.npmjs.org/package/datacraft)
 ![No dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
 
